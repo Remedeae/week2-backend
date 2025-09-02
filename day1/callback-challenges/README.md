@@ -1,0 +1,2 @@
+Completed challenges 1-4, got stuck on 5th due to type conflicts I didn't know how to solve.
+ (Had issues earlier as well having to use addTwo(array[i]!) to make sure it trusted taht I would give it a number. From what I gathered it seemed to me like typescript was going to understand that the array[] couldn't be undefined since it was in a loop limited by the array lenght. Very confused.)
