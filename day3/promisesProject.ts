@@ -1,17 +1,30 @@
+type spellInfo = {
+   index: string,
+   name: string,
+   level: number,
+   url: string,
+}
+type spellList = {
+   count: number,
+   results: spellInfo[],
+}
+
 const fetchSpell = (castSpellOutcome: unknown) => {
-   fetch("https://www.dnd5eapi.co/api/2014/spells")
-      .then((response) => {
+   const promise: Promise<void> = fetch(
+      "https://www.dnd5eapi.co/api/2014/spells")
+      .then((response : Response) => {
          if (!response.ok) {
             throw new Error("Failure retreiveing data.");
          }
-         return response.json();
+         return response.json() as Promise<spellList>;
       })
-      .then((data) => {
+      .then((data : spellList) => {
+         //   console.log(data)
          const spellID: number = Math.floor(Math.random() * data.count) - 1;
-         const spell: string = data.results[spellID].name;
+         const spell: string = data.results[spellID]!.name;
          console.log(castSpellOutcome + spell);
       })
-      .catch((error) => {
+      .catch((error : unknown) => {
          console.error("Error fetching spell: ", error);
       })
 }
