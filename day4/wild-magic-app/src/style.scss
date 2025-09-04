@@ -1,0 +1,63 @@
+@import 'reset';
+
+* {
+    font-family: "Mystery Quest", system-ui;
+}
+
+.home {
+    &__header {
+        display: flex;
+        font-size: 4rem;
+        color: #fff;
+
+        & i {
+            padding: 0.5rem;
+        }
+
+        .fa-hand-sparkles {
+            align-self: flex-end;
+        }
+    }
+
+    &>div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background-image: url(./assets/ParallaxBackground/merged-background.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    & button {
+        width: 24rem;
+        height: 5rem;
+        border: none;
+        background-color: transparent;
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 600;
+
+        &:hover {
+            background: linear-gradient(45deg, red, rgb(243, 83, 83), rgb(255, 212, 132), rgb(231, 231, 154), rgb(105, 238, 105), rgb(107, 107, 245), rgb(142, 84, 184), rgb(172, 95, 172), rgb(180, 72, 72));
+            text-align: center;
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: shine 1s linear infinite;
+
+            @keyframes shine {
+                to {
+                    background-position: 200% center;
+                }
+
+            }
+        }
+
+    }
+}
