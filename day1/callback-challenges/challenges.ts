@@ -47,24 +47,22 @@ const map = (array : number[], addTwo : mapFunction) => {
 The function forEach takes an array and a callback, and runs the callback on each element of the array. 
 forEach does not return anything.
 */
-
+type callbackType = (char: any) => void;
+const forEach = (array : any[] , callback : callbackType) => {
+    for ( let i = 0; i < array.length; i++) {
+        callback(array[i]);
+    }
+}
 let alphabet = "";
 const letters = ["a", "b", "c", "d"];
-type forEachType =  <T>(parameter: T) => void;
-const forEach = <T>(inputArray: T[], opperation : forEachType) => {
-    for (let i = 0; i < inputArray.length; i++) {
-        opperation(inputArray[i]);
-    }
-};
-const updateAlphabet = <T>(char: T) => {
-      alphabet += char;
-}
-forEach(letters, updateAlphabet);
-
+forEach(letters, function (char) {
+  alphabet += char;
+});
+console.log(alphabet);
 // should output abcd
 
 // ________________________________________________________________________________________________
-// Challenge 5 - ...
+// Challenge 5 - DONE
 /* 
 Rebuild your map function, this time instead of using a for loop, use your own forEach function that you just defined. 
 Call this new function mapWith.//console.log(mapWith([1, 2, 3], addTwo));
@@ -72,8 +70,9 @@ Call this new function mapWith.//console.log(mapWith([1, 2, 3], addTwo));
 
 const mapWith = (array : number[], mapUpdate : mapFunction) => {
     let filteredArray : number[] = [];
-    forEach(array, (x) => {filteredArray.push(mapUpdate(x))     //I do not know how to get around the type differences here
+    forEach(array, (item) => {filteredArray.push(mapUpdate(item))
     });
+    return filteredArray;
 }
 
 //console.log(mapWith([1, 2, 3], addTwo)); should output [ 3, 4, 5 ]
@@ -86,8 +85,16 @@ For example it can sum all the numbers, multiply them,
 or any operation that you can put into a function.
 */
 
+type addFunction = (a: number, b: number) => number;
+const reduce = (array : number[], callback : addFunction, value : number) => {
+    for (let i = 0; i < array.length; i++) {
+        value = callback(value, array[i]!);
+    }
+    return value;
+}
+
 const nums = [4, 1, 3];
-const add = function (a, b) {
+const add = function (a:number, b:number) {
   return a + b;
 };
 console.log(reduce(nums, add, 0))
