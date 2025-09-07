@@ -1,14 +1,32 @@
 @import 'reset';
 
-* {
+h1, button, p, label, i {
     font-family: "Mystery Quest", system-ui;
+    color: #fff;
+}
+
+img {
+    max-width: 800px;
+    width: 100%;
+}
+
+label, .choosenSpell, ::placeholder {
+    font-family: "Alike Angular", serif;
+}
+
+.choosenSpell {
+    color: black;
+
+    &::placeholder {
+        color: #000;
+    }
 }
 
 .home {
+
     &__header {
         display: flex;
         font-size: 4rem;
-        color: #fff;
 
         & i {
             padding: 0.5rem;
@@ -17,6 +35,14 @@
         .fa-hand-sparkles {
             align-self: flex-end;
         }
+    }
+
+    & p {
+        max-width: 1000px;
+        width: 100%;
+        text-align: center;
+        font-family: "Alike Angular", serif;
+        font-size: 1.4rem;
     }
 
     &>div {
@@ -32,12 +58,11 @@
         height: 100vh;
     }
 
-    & button {
+    & .castSpellButton {
         width: 24rem;
         height: 5rem;
         border: none;
         background-color: transparent;
-        color: #fff;
         font-size: 3rem;
         font-weight: 600;
 
@@ -58,6 +83,13 @@
 
             }
         }
-
+    }
+    & .chooseCastButton {
+        margin: 0.3rem;
+        border-radius: 1rem;
+        border: none;
+        color: #000;
+        font-size: 2rem;
+        width: 6rem;
     }
 }
