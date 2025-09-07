@@ -1,6 +1,8 @@
 import { useState } from "react";
 import orc from './assets/orc.svg'
-
+import defeat from './assets/defeat.svg'
+import escape from './assets/escape.svg'
+import vicotry from './assets/victory.svg'
 
 function App() {
 
@@ -17,6 +19,7 @@ function App() {
 
   const [combatMessage, setCombatMessage] = useState("After a long battle you are exhausted, yet before you still stands a final towering orc, he's just as tired as you and just wants to go home. As he raises his blade to finish you off you feel a final spark of magic emerging from deep within you.");
   const [chooseSpell, setChooseSpell] = useState("");
+  const [image, setImage] = useState(orc);
 
   const fetchSpellData = async (spellURL: string) => {
     try {
@@ -25,6 +28,7 @@ function App() {
       const spellEffect = data.damage !== undefined ?
         `which deals ${data.damage.damage_type.index} damage to your foe. The orc perisches and you emerge victorious.` :
         "which distracts your foe and you barely manages to escape. You may live another day, but somewhere out there an orc is waiting for his time to strike you down.";
+      data.damage !== undefined ? setImage(vicotry) : setImage(escape);
       return spellEffect;
 
     } catch (error) {
@@ -64,6 +68,7 @@ function App() {
     } catch (error) {
 
       setCombatMessage(`${error}`);
+      setImage(defeat);
     }
   };
   const fetchSpellRequested = async (requestedSpell: string) => {
@@ -78,6 +83,7 @@ function App() {
       setCombatMessage(`You cast ${outcome}`);
     } catch (error) {
       setCombatMessage("Hubris! You did not know your spells and now you suffer a grusome death at the hands of this orc.");
+      setImage(defeat);
     }
   }
 
@@ -90,7 +96,7 @@ function App() {
           <i className="fa-solid fa-wand-sparkles"></i>
         </div>
         <div className="enemy">
-          <img src={orc} alt="Orc Enemy" />
+          <img src={image} alt="Orc Enemy" />
         </div>
         <div className="combatLog">
           <p>{combatMessage}</p>
